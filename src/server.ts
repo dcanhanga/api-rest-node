@@ -1,18 +1,26 @@
+import { randomUUID } from 'node:crypto';
 import fastify from 'fastify';
 import { knex } from './database.js';
+import { env } from './env/index.js';
 
 const app = fastify();
 
 app.get('/', async (_req, res) => {
-	const transactions = await knex('sqlite_schema').select('*');
+	const transactions = await knex('transactions')
+		.insert({
+			id: randomUUID(),
+			title: 'Transação de teste',
+			amount: 1000,
+		})
+		.returning('*');
 	res.send({ transactions });
 	console.log(transactions);
 });
 
 app
-	.listen({ port: 3000 })
+	.listen({ port: env.PORT })
 	.then(() => {
-		console.log('Server listening at http://localhost:3000');
+		console.log(`Server listening at http://localhost:${env.PORT}`);
 	})
 	.then((error) => {
 		console.log(error);
