@@ -1,0 +1,32 @@
+{
+	"name": "api-rest-node",
+	"version": "1.0.0",
+	"description": "",
+	"type": "module",
+	"main": "index.js",
+	"scripts": {
+		"dev": "tsx --watch --env-file .env --inspect --no-warnings src/server.ts",
+		"docker-up": "docker compose up -d",
+		"dev:docker": "npm run docker-up && npm run dev",
+		"biome": "biome check --write --no-errors-on-unmatched",
+		"prepare": "husky"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"fastify": "^4.28.1",
+		"knex": "^3.1.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.8.3",
+		"@types/lint-staged": "^13.3.0",
+		"@types/node": "^22.5.1",
+		"git-commit-msg-linter": "^5.0.8",
+		"husky": "^9.1.5",
+		"lint-staged": "^15.2.9",
+		"sqlite3": "^5.1.7",
+		"tsx": "^4.19.0",
+		"typescript": "^5.5.4"
+	}
+}
