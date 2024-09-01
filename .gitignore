@@ -36,4 +36,4 @@ yarn-error.log*
 next-env.d.ts
 .staged
 .requirment
-temp/
+database/app.db
