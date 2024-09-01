@@ -5,9 +5,13 @@
 	"type": "module",
 	"main": "index.js",
 	"scripts": {
+		"knex": "node --import tsx ./node_modules/.bin/knex",
+		"knex:migrate:latest": "npm run knex -- migrate:latest",
+		"knex:migrate:rollback": "npm run knex -- migrate:rollback",
+		"knex:migrate:make": "npm run knex -- migrate:make",
 		"dev": "tsx --watch --env-file .env --inspect --no-warnings src/server.ts",
-		"docker-up": "docker compose up -d",
-		"dev:docker": "npm run docker-up && npm run dev",
+		"docker:up": "docker compose up -d",
+		"dev:docker": "npm run docker:up && npm run dev",
 		"biome": "biome check --write --no-errors-on-unmatched",
 		"prepare": "husky"
 	},
