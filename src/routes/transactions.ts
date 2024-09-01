@@ -4,13 +4,12 @@ import type { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 
 export async function transactionsRoutes(app: FastifyInstance) {
-	app.get('/', async (_req, rep) => {
+	app.get('/', async () => {
 		const transactions = await knex('transactions').select('*');
-		rep.send({
-			transactions,
-		});
+
+		return transactions;
 	});
-	app.get('/:id', async (req, rep) => {
+	app.get('/:id', async (req) => {
 		const getTransactionsParamsSchema = z.object({
 			id: z.string().uuid(),
 		});
@@ -21,10 +20,17 @@ export async function transactionsRoutes(app: FastifyInstance) {
 				id,
 			})
 			.first();
-		rep.send({
-			transactions,
-		});
+		return transactions;
 	});
+	app.get('/summary', async () => {
+		const summary = await knex('transactions')
+			.sum('amount', {
+				as: 'amount',
+			})
+			.first();
+		return summary;
+	});
+
 	app.post('/', async (req, rep) => {
 		const createTransactionsBodySchema = z.object({
 			title: z.string(),
