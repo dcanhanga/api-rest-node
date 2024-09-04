@@ -10,6 +10,7 @@
 		"knex:migrate:rollback": "npm run knex -- migrate:rollback",
 		"knex:migrate:make": "npm run knex -- migrate:make",
 		"dev": "tsx --watch --env-file .env --inspect --no-warnings src/server.ts",
+		"test": "vitest",
 		"docker:up": "docker compose up -d",
 		"dev:docker": "npm run docker:up && npm run dev",
 		"biome": "biome check --write --no-errors-on-unmatched",
@@ -34,6 +35,7 @@
 		"lint-staged": "^15.2.9",
 		"sqlite3": "^5.1.7",
 		"tsx": "^4.19.0",
-		"typescript": "^5.5.4"
+		"typescript": "^5.5.4",
+		"vitest": "^2.0.5"
 	}
 }
