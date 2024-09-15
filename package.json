@@ -1,10 +1,15 @@
 {
 	"name": "api-rest-node",
 	"version": "1.0.0",
-	"description": "API REST com Node.js, Typescript, Fastify, knex, sqlite3",
+	"description": "API REST com Node.js, Typescript",
+	"engines": {
+		"node": ">=20"
+	},
 	"type": "module",
 	"main": "index.js",
 	"scripts": {
+		"build": "tsup src --format esm --out-dir build ",
+		"start": "npm run build && node build/server.js",
 		"load:env:test": "tsx --env-file .env.test",
 		"knex": "tsx --env-file .env ./node_modules/.bin/knex",
 		"knex:test": "tsx --env-file .env.test ./node_modules/.bin/knex",
@@ -26,6 +31,7 @@
 		"dotenv": "^16.4.5",
 		"fastify": "^4.28.1",
 		"knex": "^3.1.0",
+		"pg": "^8.12.0",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
@@ -38,6 +44,7 @@
 		"lint-staged": "^15.2.9",
 		"sqlite3": "^5.1.7",
 		"supertest": "^7.0.0",
+		"tsup": "^8.2.4",
 		"tsx": "^4.19.0",
 		"typescript": "^5.5.4",
 		"vitest": "^2.0.5"
