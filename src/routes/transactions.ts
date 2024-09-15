@@ -14,7 +14,7 @@ export async function transactionsRoutes(app: FastifyInstance) {
 			.select('*')
 			.where({ session_id: sessionId });
 
-		return transactions;
+		return { transactions };
 	});
 	app.get('/:id', { preHandler: [checkSessionIdExists] }, async (req) => {
 		const getTransactionsParamsSchema = z.object({
@@ -37,7 +37,7 @@ export async function transactionsRoutes(app: FastifyInstance) {
 				as: 'amount',
 			})
 			.first();
-		return summary;
+		return { summary };
 	});
 
 	app.post('/', async (req, rep) => {
