@@ -9,7 +9,7 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "tsup src --format esm --out-dir build ",
-		"start": "npm run build && node build/server.js",
+		"start": "npm run build && node --env-file .env build/server.js",
 		"load:env:test": "tsx --env-file .env.test",
 		"knex": "tsx --env-file .env ./node_modules/.bin/knex",
 		"knex:test": "tsx --env-file .env.test ./node_modules/.bin/knex",
