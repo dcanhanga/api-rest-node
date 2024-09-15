@@ -2,10 +2,9 @@ import { app } from './app.js';
 import { env } from './env/index.js';
 
 app
-	.listen({ port: env.PORT })
-	.then(() => {
-		console.log(`Server listening at http://localhost:${env.PORT}`);
+	.listen({
+		port: env.PORT,
 	})
-	.catch((error) => {
-		console.error(error);
+	.then(() => {
+		console.log('HTTP Server Running!');
 	});
