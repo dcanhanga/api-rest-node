@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env*
 .env
 
 # vercel
@@ -38,4 +39,4 @@ next-env.d.ts
 .staged
 .requirment
 database/app.db
-app.session.sql
+database/test.db
