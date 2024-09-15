@@ -5,7 +5,6 @@ const envSchema = z.object({
 	DATA_BASE_CLIENT: z.enum(['pg', 'sqlite3']).default('pg'),
 	DATA_BASE_URL: z.string(),
 	PORT: z.coerce.number().default(3333),
-	host: z.string(),
 });
 
 const { success, data, error } = envSchema.safeParse(process.env);
