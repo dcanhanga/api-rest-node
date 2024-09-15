@@ -72,4 +72,23 @@ describe('Transactions routes', () => {
 			}),
 		);
 	});
+	it('should be able to get transaction summary', async () => {
+		const createTransactionResponse = await request(app.server)
+			.post('/transactions')
+			.send({ title: 'Test Transaction Credit', amount: 500, type: 'credit' });
+
+		const cookies = createTransactionResponse.get('Set-Cookie');
+		await request(app.server)
+			.post('/transactions')
+			.set('Cookie', cookies as string[])
+			.send({ title: 'Test Transaction debit', amount: 200, type: 'debit' });
+
+		const summaryResponse = await request(app.server)
+			.get('/transactions/summary')
+			.set('Cookie', cookies as string[])
+			.expect(200);
+		expect(summaryResponse.body.summary).toEqual(
+			expect.objectContaining({ amount: 300 }),
+		);
+	});
 });
